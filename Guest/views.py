@@ -328,20 +328,14 @@ def login_user(request):
 
     email = request.POST['email']
     password = request.POST['password']
-    ten = request.POST.get('tenant')
-    ren = request.POST.get('renter')
+    #ten = request.POST.get('tenant')
+    #ren = request.POST.get('renter')
+    #user.save()
     user = authenticate(request, email=email, password=password)
 
     if user is not None:
-
-        if user_type == ten:
-            login(request, user)
-            return redirect("/")
-        else:
-            login(request, user)
-            return redirect("/profile")
-        #login(request, user)
-        #return redirect("/")
+        login(request, user)
+        return redirect("/")
     else:
         template = loader.get_template('login.html')
         context = {
